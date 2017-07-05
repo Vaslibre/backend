@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "96098e473b028cdb2529580554a1ae3e",
+    "content-hash": "25d734d89f75de9f197c3be2be95fe30",
     "packages": [
+        {
+            "name": "codecourse/notify",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codecourse/notify.git",
+                "reference": "1abffc3d9a6d8ef79d9f2c0af0a1bcadc86bf4c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codecourse/notify/zipball/1abffc3d9a6d8ef79d9f2c0af0a1bcadc86bf4c1",
+                "reference": "1abffc3d9a6d8ef79d9f2c0af0a1bcadc86bf4c1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Codecourse\\Notify\\": "src/"
+                },
+                "files": [
+                    "src/Codecourse/Notify/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Garrett",
+                    "email": "alex@codecourse.com"
+                }
+            ],
+            "description": "Flexible flash notifications for Laravel",
+            "time": "2015-12-01T09:20:03+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -426,6 +466,60 @@
                 "psysh"
             ],
             "time": "2017-06-01T16:31:26+00:00"
+        },
+        {
+            "name": "laravelcollective/html",
+            "version": "v5.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "9b8f51e7a2368911c896f5d42757886bae0717b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/9b8f51e7a2368911c896f5d42757886bae0717b5",
+                "reference": "9b8f51e7a2368911c896f5d42757886bae0717b5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "5.4.*",
+                "illuminate/routing": "5.4.*",
+                "illuminate/session": "5.4.*",
+                "illuminate/support": "5.4.*",
+                "illuminate/view": "5.4.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "illuminate/database": "5.4.*",
+                "mockery/mockery": "~0.9.4",
+                "phpunit/phpunit": "~5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "http://laravelcollective.com",
+            "time": "2017-05-22T06:35:07+00:00"
         },
         {
             "name": "league/flysystem",
@@ -985,6 +1079,183 @@
                 "uuid"
             ],
             "time": "2017-03-26T20:37:53+00:00"
+        },
+        {
+            "name": "spatie/laravel-cookie-consent",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-cookie-consent.git",
+                "reference": "82593c91b5851ec444f507482206905677e8599f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-cookie-consent/zipball/82593c91b5851ec444f507482206905677e8599f",
+                "reference": "82593c91b5851ec444f507482206905677e8599f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cookie": "~5.1.0|~5.2.0|~5.3.0|~5.4.0",
+                "illuminate/support": "~5.1.0|~5.2.0|~5.3.0|~5.4.0",
+                "illuminate/view": "~5.1.0|~5.2.0|~5.3.0|~5.4.0",
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "~1.4",
+                "orchestra/database": "~3.1.0|~3.2.0|~3.3.0|~3.4.0@dev",
+                "orchestra/testbench": "~3.1.0|~3.2.0|~3.3.0|~3.4.0@dev",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\CookieConsent\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Willem Van Bockstal",
+                    "email": "willem@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Make your Laravel app comply with the crazy EU cookie law",
+            "homepage": "https://github.com/spatie/laravel-cookie-consent",
+            "keywords": [
+                "comply",
+                "cookie",
+                "eu",
+                "laravel-cookie-consent",
+                "law",
+                "spatie"
+            ],
+            "time": "2017-01-24T21:08:15+00:00"
+        },
+        {
+            "name": "spatie/laravel-permission",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "ffa0f2f27b5b980f6471c50aee0470fb85d35cab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/ffa0f2f27b5b980f6471c50aee0470fb85d35cab",
+                "reference": "ffa0f2f27b5b980f6471c50aee0470fb85d35cab",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "~5.4.0",
+                "illuminate/container": "~5.4.0",
+                "illuminate/contracts": "~5.4.0",
+                "illuminate/database": "~5.4.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "monolog/monolog": "^1.22",
+                "orchestra/testbench": "~3.4.2",
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 5.4 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "security",
+                "spatie"
+            ],
+            "time": "2017-07-01T16:18:12+00:00"
+        },
+        {
+            "name": "spatie/laravel-sluggable",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-sluggable.git",
+                "reference": "5f61739587510e3035e00cc34cb18314ee63e8e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-sluggable/zipball/5f61739587510e3035e00cc34cb18314ee63e8e3",
+                "reference": "5f61739587510e3035e00cc34cb18314ee63e8e3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.0.0|~5.1.0|~5.2.0|~5.3.0|~5.4.0",
+                "illuminate/support": "~5.0.0|~5.1.0|~5.2.0|~5.3.0|~5.4.0",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "orchestra/database": "~3.2.0|~3.3.0|~3.4.0@dev",
+                "orchestra/testbench": "~3.2.0|~3.3.0|~3.4.0@dev",
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Sluggable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate slugs when saving Eloquent models",
+            "homepage": "https://github.com/spatie/laravel-sluggable",
+            "keywords": [
+                "laravel-sluggable",
+                "spatie"
+            ],
+            "time": "2017-04-13T14:48:58+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

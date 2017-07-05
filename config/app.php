@@ -177,6 +177,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Componentes necesarios para VaSLibre
+         */
+        Codecourse\Notify\NotifyServiceProvider::class,
+        Spatie\CookieConsent\CookieConsentServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,    
+        Collective\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
@@ -225,6 +233,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * Componentes necesarios para VaSLibre
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,        
 
     ],
 

@@ -62,4 +62,24 @@ class Handler extends ExceptionHandler
 
         return redirect()->guest(route('login'));
     }
+    /**
+     * Handle unauthorized response
+     *
+     * @param $request
+     * @param Exception $exception
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    private function unauthorized($request, Exception $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => $exception->getMessage()], 403);
+        }
+        
+        notify()->flash('¡Quieto ahí!', 'error', [
+            'timer' => 3000,
+            'text'  => '¿Para dondé piensas tu que vas pajarito?' ,
+        ]);
+        
+        return redirect()->back();
+    }    
 }
