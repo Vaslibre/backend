@@ -47,11 +47,6 @@ class Notas extends Model
     {
         $nota   = Notas::whereUrl($slug)->first();
 
-        if (!$nota) {
-            abort(404);
-        }
-
-
         $min    = Notas::where('id', '<', $nota->id)->max('id');
         $max    = Notas::where('id', '>', $nota->id)->min('id');
 
