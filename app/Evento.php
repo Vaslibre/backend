@@ -7,7 +7,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Evento
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  *
  * @package App
  */
-class Evento extends Eloquent
+class Evento extends Model
 {
 	public $timestamps = false;
 
