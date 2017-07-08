@@ -11,9 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('front.welcome');
-})->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/blog/{slug?}', 'HomeController@show')->name('blog');
+
+
+// Notas publicadas
+Route::get('/notas', 'PublicacionesController@index')->name('notas');
+Route::get('/notas/{slug?}', 'PublicacionesController@show')->name('notas');
+
+// colaboraciones
+Route::get('/colaboraciones', 'HomeController@colaboraciones')->name('colaboraciones');
+
+// buscador
+Route::get('find', 'SearchController@find')->name('search');
+
+// sitemap
+Route::get('/sitemap.xml', 'SitemapController@index');
+
+Route::get('/nosotros', function () {
+    return view('front.nosotros');
+})->name('nosotros');
 
 Auth::routes();
 

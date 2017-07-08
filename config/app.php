@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -184,6 +184,7 @@ return [
         Spatie\CookieConsent\CookieConsentServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,    
         Collective\Html\HtmlServiceProvider::class,
+        Spatie\Sitemap\SitemapServiceProvider::class,
 
     ],
 
@@ -238,7 +239,7 @@ return [
          * Componentes necesarios para VaSLibre
          */
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,        
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
