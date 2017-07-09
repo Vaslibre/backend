@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Blade;
 use App\Notas;
 use App\Banner;
 
@@ -29,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
             $view->with('current', $current_route_name);
 
         });
+        Blade::directive('utf8Decode', function($expression){
+            return "<?php echo utf8_decode($expression); ?>";
+        });        
     }
 
     /**

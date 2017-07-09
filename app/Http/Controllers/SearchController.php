@@ -16,6 +16,11 @@ class SearchController extends Controller
      */
     public function find(Request $request)
     {
-        return Notas::search($request->get('q'))->get();
+
+        if($request->ajax()){
+            return Notas::search($request->get('q'))->get();
+        }
+
+        abort(404);
     }
 }

@@ -27,6 +27,8 @@ Route::get('find', 'SearchController@find')->name('search');
 
 // sitemap
 Route::get('/sitemap.xml', 'SitemapController@index');
+//RSS
+Route::get('/rss', 'RssController@index')->name('rss');
 
 Route::get('/nosotros', function () {
     return view('front.nosotros');
