@@ -9,7 +9,8 @@ class RssController extends Controller
 {
     public function index()
     {
-        $post = Notas::all()->reverse();
+        $post = Notas::orderBy('id', 'desc')
+            ->paginate(100);
 
         return response()->view('front.partials.rss', [
             'posts' => $post,
