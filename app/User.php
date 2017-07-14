@@ -20,7 +20,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'provider',
+        'provider_id'
     ];
 
     /**
@@ -41,5 +45,22 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new RecoverPassword($token));
-    } 
+    }
+
+    public function notas()
+    {
+        return $this->hasMany(Notas::class)->orderBy('id','desc');
+    }  
+
+    public function publish(Notas $notas)
+    {
+        $this->notas()->save($notas);
+    }
+
+
+// auth()->user()->publish(
+//     new Notas(request(['']));
+// );
+
+
 }

@@ -14,16 +14,16 @@ class CreateNotasTable extends Migration {
 	{
 		Schema::create('notas', function(Blueprint $table)
 		{
-			$table->integer('id', true);
-			$table->text('titulo', 65535);
-			$table->text('intro', 65535);
+			$table->increments('id');
+			$table->string('titulo');
+			$table->text('intro');
 			$table->text('texto');
 			$table->string('url');
-			$table->string('postea', 30);
-			$table->integer('fecha');
-			$table->integer('hits');
+			$table->string('postea')->nullable();
+			$table->integer('fecha')->nullable();
+			$table->integer('hits')->nullable();
+			$table->integer('user_id');
 			$table->timestamps();
-			$table->index(['titulo','intro','texto'], 'titulo');
 		});
 	}
 

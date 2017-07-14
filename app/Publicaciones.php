@@ -37,4 +37,9 @@ class Publicaciones extends Model
         $next       = Publicaciones::whereId($max)->first();
         return view('front.detalle-publicaciones', compact('nota','previous','next'));
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }    
 }

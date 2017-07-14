@@ -185,6 +185,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,    
         Collective\Html\HtmlServiceProvider::class,
         Spatie\Sitemap\SitemapServiceProvider::class,
+        Spatie\Analytics\AnalyticsServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -240,6 +242,9 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Gravatar' => Abr4xas\Utils\Gravatar::class,
 
     ],
 
