@@ -9,11 +9,12 @@ use App\Notas;
 class ProfileController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
      *
+     * @param  \App\Notas  $slug
      * @return \Illuminate\Http\Response
      */
-    public function index($slug)
+    public function show($slug)
     {
         $result = User::whereNickname($slug)->first();
 

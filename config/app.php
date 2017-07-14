@@ -244,7 +244,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Gravatar' => Abr4xas\Utils\Gravatar::class,
+        'Gravatar'  => Abr4xas\Utils\Gravatar::class,
 
     ],
 
