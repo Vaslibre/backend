@@ -6,7 +6,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Spatie\Permission\Traits\HasRoles;
-
 use App\Notifications\RecoverPassword;
 
 class User extends Authenticatable
@@ -23,8 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'provider',
-        'provider_id'
+        'nickname',
+        'bio'
     ];
 
     /**

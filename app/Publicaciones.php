@@ -22,6 +22,7 @@ class Publicaciones extends Model
     public function getAll()
     {
         $result = Publicaciones::orderBy('id', 'desc')
+            ->wherePublicado(true)
             ->paginate(6);
 
         return view('front.notas', compact('result'));

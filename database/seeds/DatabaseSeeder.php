@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Default Permissions added.');
 
         // Confirm roles needed
-        if ($this->command->confirm('Create Roles for user, default is admin user and blog? [y|N]', true)) {
+        if ($this->command->confirm('Create Roles for users? Default is admin and user [y|N]', true)) {
 
             // Ask for roles from input
-            $input_roles = $this->command->ask('Enter roles in comma separate format.', 'Admin,User,Blog');
+            $input_roles = $this->command->ask('Enter roles in comma separate format.', 'Admin,User');
 
             // Explode roles
             $roles_array = explode(',', $input_roles);
@@ -48,21 +48,14 @@ class DatabaseSeeder extends Seeder
                     $role->syncPermissions(Permission::all());
                     $this->command->info('Admin granted all the permissions');
 
-                } else if( $role->name == 'Blog' ) {
-
-                    $role->syncPermissions(Permission::where('name', 'LIKE', 'view_post')
-                        ->orWhere('name', 'LIKE', 'add_post')
-                        ->orWhere('name', 'LIKE', 'edit_post')
-                        ->orWhere('name', 'LIKE', 'delete_post')
-                        ->get());
-
-                    $this->command->info('Added blog permissions');
                 } else {
 
-                // for others by default only profile access
-                $role->syncPermissions(Permission::where('name', 'LIKE', 'view_profile')
-                    ->orWhere('name', 'LIKE', 'edit_profile')
-                    ->get());
+                    // for others by default only some access
+                    $role->syncPermissions(Permission::where('name', 'LIKE', 'view_profile')
+                        ->orWhere('name', 'LIKE', 'edit_profile')
+                        ->orWhere('name', 'LIKE', 'add_post')
+                        ->orWhere('name', 'LIKE', 'edit_post')
+                        ->get());
 
                     $this->command->info('Added user permissions');
                 }
@@ -91,17 +84,13 @@ class DatabaseSeeder extends Seeder
         $user->assignRole($role->name);
 
         if( $role->name == 'Admin' ) {
+
             $this->command->info('Here is your admin details to login:');
             $this->command->warn($user->email);
             $this->command->warn('Password is "secret"');
         }
         if( $role->name == 'User' ) {
             $this->command->info('Here is your User details to login:');
-            $this->command->warn($user->email);
-            $this->command->warn('Password is "secret"');
-        }
-        if( $role->name == 'Blog' ) {
-            $this->command->info('Here is your Blog details to login:');
             $this->command->warn($user->email);
             $this->command->warn('Password is "secret"');
         }

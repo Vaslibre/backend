@@ -38,6 +38,7 @@ class HomeController extends Controller
             }
         }
         $result = Notas::latest()
+        ->wherePublicado(true)
         ->filter(request(['month','year']))
         ->paginate(6);
         return view('front.welcome', compact('result'));

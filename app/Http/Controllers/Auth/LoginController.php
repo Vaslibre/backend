@@ -10,6 +10,7 @@ use App\SocialAccount;
 use Auth;
 use Socialite;
 use Laravel\Socialite\Contracts\User as ProviderUser;
+use Abr4xas\Utils\SeoUrl;
 
 class LoginController extends Controller
 {
@@ -68,25 +69,25 @@ class LoginController extends Controller
 
             notify()->flash('¡Oops!', 'error', [
                 'timer' => 5000,
-                'text' => 'Has cancelado el inicio de sesión',
-            ]);        
-                
+                'text'  => 'Has cancelado el inicio de sesión',
+            ]);
+
             return redirect()->route('home');
         }
 
         $user = Socialite::driver($provider)->user();
-            
-        $authUser = $this->findOrCreateUser($user, $provider);        
-            
+
+        $authUser = $this->findOrCreateUser($user, $provider);
+        //  dd($authUser);
         Auth::login($authUser, true);
 
         notify()->flash('¡Bien!', 'success', [
             'timer' => 5000,
-            'text' => 'Bienvenido, ' . $user->name,
-        ]);        
+            'text'  => 'Bienvenido, ' . $authUser->name,
+        ]);
 
-        return redirect($this->redirectTo); 
-       
+        return redirect($this->redirectTo);
+
     }
 
     /**
@@ -103,12 +104,14 @@ class LoginController extends Controller
             ->first();
 
         if ($account) {
+
             return $account->user;
+
         } else {
 
             $account = new SocialAccount([
-                'provider_user_id' => $providerUser->getId(),
-                'provider' => $provider
+                'provider_user_id'  => $providerUser->getId(),
+                'provider'          => $provider
             ]);
 
             $user = User::whereEmail($providerUser->getEmail())->first();
@@ -116,8 +119,9 @@ class LoginController extends Controller
             if (!$user) {
 
                 $user = User::create([
-                    'email' => $providerUser->getEmail(),
-                    'name'  => $providerUser->getName(),
+                    'email'     => $providerUser->getEmail(),
+                    'name'      => $providerUser->getName(),
+                    'nickname'  => ($providerUser->getNickname() != NULL ) ? $providerUser->getNickname() : SeoUrl::generateSlug($providerUser->getName()),
                 ]);
 
                 $user->assignRole('User');
@@ -127,6 +131,6 @@ class LoginController extends Controller
             $account->save();
 
             return $user;
-        }            
+        }
     }
 }

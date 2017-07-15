@@ -21,7 +21,9 @@ class CreatePublicacionesTable extends Migration {
 			$table->string('postea');
 			$table->integer('fecha');
 			$table->integer('hits');
+			$table->integer('user_id');
 			$table->string('publicacion');
+			$table->boolean('publicado')->default(false);
 			$table->timestamps();
 		});
 	}

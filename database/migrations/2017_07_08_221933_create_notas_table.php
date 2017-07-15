@@ -23,6 +23,7 @@ class CreateNotasTable extends Migration {
 			$table->integer('fecha')->nullable();
 			$table->integer('hits')->nullable();
 			$table->integer('user_id');
+			$table->boolean('publicado')->default(false);
 			$table->timestamps();
 		});
 	}
