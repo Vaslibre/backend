@@ -86,7 +86,7 @@ class LoginController extends Controller
             'text'  => 'Bienvenido, ' . $authUser->name,
         ]);
 
-        return redirect($this->redirectTo);
+       return redirect()->intended('home');
 
     }
 
