@@ -11,9 +11,9 @@
 |
 */
 
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/blog/{slug?}', 'HomeController@show')->name('blog');
-
 
 // Notas publicadas
 Route::get('/notas', 'PublicacionesController@index')->name('notas');
@@ -34,28 +34,29 @@ Route::get('/nosotros', function () {
     return view('front.nosotros');
 })->name('nosotros');
 
+// Profile
+Route::get('profile/{slug}', 'ProfileController@show');
+
+// OAuth Routes
+Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+
 //Auth::routes();
-// Authentication Routes...
+// Login & Logout Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-// Registration Routes...
-//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-//Route::post('register', 'Auth\RegisterController@register');
+Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
-// Password Reset Routes...
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+    Route::middleware(['role:Admin'])->group(function () {
 
-Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+        Route::get('/home', 'HomeController@index')->name('admin.home');
+        Route::resource('users', 'AdminUserController');
+        Route::resource('roles', 'RoleController');
+        Route::resource('posts', 'PostController');
 
-    Route::get('/home', 'HomeController@index')->name('admin.home');
-    
-    Route::resource('users', 'UserController');
-    Route::resource('roles', 'RoleController');
-    Route::resource('posts', 'PostController');
+    });
 
 });

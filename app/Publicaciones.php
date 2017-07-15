@@ -22,6 +22,7 @@ class Publicaciones extends Model
     public function getAll()
     {
         $result = Publicaciones::orderBy('id', 'desc')
+            ->wherePublicado(true)
             ->paginate(6);
 
         return view('front.notas', compact('result'));
@@ -37,4 +38,9 @@ class Publicaciones extends Model
         $next       = Publicaciones::whereId($max)->first();
         return view('front.detalle-publicaciones', compact('nota','previous','next'));
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }    
 }

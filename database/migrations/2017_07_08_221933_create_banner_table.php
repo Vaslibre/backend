@@ -14,13 +14,10 @@ class CreateBannerTable extends Migration {
 	{
 		Schema::create('banner', function(Blueprint $table)
 		{
-			$table->integer('id', true);
-			$table->string('titulo', 30)->default('');
-			$table->string('url_site', 60)->default('');
-			$table->string('url_banner', 100)->default('');
-			$table->integer('mostrado')->default(0);
-			$table->integer('click')->default(0);
-			$table->string('fecha', 10)->default('');
+			$table->increments('id');
+			$table->string('titulo');
+			$table->string('url_site');
+			$table->string('url_banner');
 			$table->timestamps();
 		});
 	}

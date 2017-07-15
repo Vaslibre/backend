@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Default Permissions added.');
 
         // Confirm roles needed
-        if ($this->command->confirm('Create Roles for user, default is admin and user? [y|N]', true)) {
+        if ($this->command->confirm('Create Roles for users? Default is admin and user [y|N]', true)) {
 
             // Ask for roles from input
             $input_roles = $this->command->ask('Enter roles in comma separate format.', 'Admin,User');
@@ -47,13 +47,18 @@ class DatabaseSeeder extends Seeder
                     // assign all permissions
                     $role->syncPermissions(Permission::all());
                     $this->command->info('Admin granted all the permissions');
+
                 } else {
-                    // for others by default only profile access
+
+                    // for others by default only some access
                     $role->syncPermissions(Permission::where('name', 'LIKE', 'view_profile')
                         ->orWhere('name', 'LIKE', 'edit_profile')
+                        ->orWhere('name', 'LIKE', 'add_post')
+                        ->orWhere('name', 'LIKE', 'edit_post')
                         ->get());
-                }
 
+                    $this->command->info('Added user permissions');
+                }
                 // create one user for each role
                 $this->createUser($role);
             }
@@ -79,7 +84,13 @@ class DatabaseSeeder extends Seeder
         $user->assignRole($role->name);
 
         if( $role->name == 'Admin' ) {
+
             $this->command->info('Here is your admin details to login:');
+            $this->command->warn($user->email);
+            $this->command->warn('Password is "secret"');
+        }
+        if( $role->name == 'User' ) {
+            $this->command->info('Here is your User details to login:');
             $this->command->warn($user->email);
             $this->command->warn('Password is "secret"');
         }

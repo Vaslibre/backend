@@ -9,7 +9,7 @@ use App\Authorizable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class AdminUserController extends Controller
 {
 
     use Authorizable;

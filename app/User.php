@@ -6,7 +6,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Spatie\Permission\Traits\HasRoles;
-
 use App\Notifications\RecoverPassword;
 
 class User extends Authenticatable
@@ -20,7 +19,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'nickname',
+        'bio'
     ];
 
     /**
@@ -41,5 +44,22 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new RecoverPassword($token));
-    } 
+    }
+
+    public function notas()
+    {
+        return $this->hasMany(Notas::class)->orderBy('id','desc');
+    }  
+
+    public function publish(Notas $notas)
+    {
+        $this->notas()->save($notas);
+    }
+
+
+// auth()->user()->publish(
+//     new Notas(request(['']));
+// );
+
+
 }

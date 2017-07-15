@@ -14,14 +14,16 @@ class CreatePublicacionesTable extends Migration {
 	{
 		Schema::create('publicaciones', function(Blueprint $table)
 		{
-			$table->integer('id', true);
-			$table->text('titulo', 65535);
-			$table->text('intro', 65535);
+			$table->integer('id');
+			$table->string('titulo');
+			$table->text('intro');
 			$table->string('url');
-			$table->string('postea', 30);
+			$table->string('postea');
 			$table->integer('fecha');
 			$table->integer('hits');
-			$table->string('publicacion', 254);
+			$table->integer('user_id');
+			$table->string('publicacion');
+			$table->boolean('publicado')->default(false);
 			$table->timestamps();
 		});
 	}
