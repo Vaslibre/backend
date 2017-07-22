@@ -92,7 +92,9 @@ class UserPostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $notas = Notas::whereId($id)->first();
+
+        return view('partials.blog.edit', compact('notas'));
     }
 
     /**
@@ -103,8 +105,37 @@ class UserPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {        
+        $this->validate($request, [
+            'titulo'  => 'required',
+            'intro'   => 'required',
+            'texto'   => 'required',
+        ]);
+        
+        $notas = Notas::find($id);
+
+        $notas->titulo      = $request->titulo;
+        $notas->intro       = $request->intro;
+        $notas->texto       = $request->texto;
+
+        if ($notas->save()) {
+
+            notify()->flash('Correcto', 'success',[
+                'text' => 'La publicación fue actualizada correctamente.',
+                'timer'=> 4000
+            ]);
+
+            return redirect()->route('home');
+
+        } else {
+
+            notify()->flash('Oops', 'error',[
+                'text' => 'Hay un problema interno, intenta más tarde...',
+                'timer'=> 4000
+            ]);
+
+            return back()->withInput();
+        }    
     }
 
     /**
