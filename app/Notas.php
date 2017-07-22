@@ -3,13 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Carbon\Carbon;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Notas extends Model
 {
 
-    use SearchableTrait;
+    use SearchableTrait, HasSlug;
 
     /**
      * Searchable rules.
@@ -93,5 +95,16 @@ class Notas extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('titulo')
+            ->saveSlugsTo('url')
+            ->doNotGenerateSlugsOnUpdate();
+    }    
 
 }

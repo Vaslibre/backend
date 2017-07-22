@@ -35,6 +35,8 @@ class Permission extends \Spatie\Permission\Models\Permission
             'edit_post',
             'delete_post',
 
+            'add_publish',
+
             'view_profile',
             'edit_profile',
         ];

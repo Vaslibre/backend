@@ -44,7 +44,7 @@ class UserRegistered extends Notification
     {
         return (new MailMessage)
             ->markdown('mail.auth.welcome', ['user' => $this->user])
-            ->subject('¡Bienvenido a VaSLibre, ' . $this->user->name . '!');
+            ->subject('¡Bienvenido a VaSLibre!');
     }
 
     /**

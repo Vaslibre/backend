@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Notas;
 
 class UserPostController extends Controller
 {
@@ -23,7 +25,9 @@ class UserPostController extends Controller
      */
     public function create()
     {
-        //
+        $notas = new Notas;
+
+        return view('partials.blog.create', compact('notas'));
     }
 
     /**
@@ -33,8 +37,40 @@ class UserPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $this->validate($request, [
+            'titulo'  => 'required',
+            'intro'   => 'required',
+            'texto'   => 'required',
+        ]);
+        
+        $notas = new Notas;
+
+        $notas->titulo      = $request->titulo;
+        $notas->intro       = $request->intro;
+        $notas->texto       = $request->texto;
+        $notas->user_id     = Auth::id();
+        $notas->publicado   = (Auth::user()->hasPermissionTo('add_publish')) ? 1 : 0;
+
+        if ($notas->save()) {
+
+            notify()->flash('Correcto', 'success',[
+                'text' => 'La publicación fue creada correctamente.',
+                'timer'=> 4000
+            ]);
+
+            return redirect()->route('home');
+
+        } else {
+
+            notify()->flash('Oops', 'error',[
+                'text' => 'Hay un problema interno, intenta más tarde...',
+                'timer'=> 4000
+            ]);
+
+            return back()->withInput();
+        }        
+
     }
 
     /**
