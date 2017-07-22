@@ -187,6 +187,7 @@ return [
         Spatie\Sitemap\SitemapServiceProvider::class,
         Spatie\Analytics\AnalyticsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        NotificationChannels\Telegram\TelegramServiceProvider::class,
 
     ],
 

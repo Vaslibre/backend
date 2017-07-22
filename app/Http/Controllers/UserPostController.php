@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Notas;
+use App\Notifications\PostPublished;
+
+use Illuminate\Support\Facades\Notification;
 
 class UserPostController extends Controller
 {
@@ -53,6 +56,9 @@ class UserPostController extends Controller
         $notas->publicado   = (Auth::user()->hasPermissionTo('add_publish')) ? 1 : 0;
 
         if ($notas->save()) {
+
+            $notas->notify(new PostPublished());
+            // Notification::send(new PostPublished());
 
             notify()->flash('Correcto', 'success',[
                 'text' => 'La publicación fue creada correctamente.',

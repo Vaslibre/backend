@@ -7,11 +7,12 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Carbon\Carbon;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Illuminate\Notifications\Notifiable;
 
 class Notas extends Model
 {
 
-    use SearchableTrait, HasSlug;
+    use SearchableTrait, HasSlug,Notifiable;
 
     /**
      * Searchable rules.
@@ -107,4 +108,14 @@ class Notas extends Model
             ->doNotGenerateSlugsOnUpdate();
     }    
 
+
+    /**
+    * Route notifications for the Telegram channel.
+    *
+    * @return int
+    */
+    public function routeNotificationForTelegram()
+    {
+        return env('CHAT_ID');
+    }
 }

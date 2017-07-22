@@ -80,8 +80,8 @@ class LoginController extends Controller
         $user = Socialite::driver($provider)->user();
 
         $authUser = $this->findOrCreateUser($user, $provider);
-        //  dd($authUser);
-        Auth::login($authUser, true);
+
+        Auth::login($authUser);
 
         notify()->flash('¡Bien!', 'success', [
             'timer' => 5000,
