@@ -55,8 +55,17 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         Route::get('/home', 'HomeController@index')->name('admin.home');
         Route::resource('users', 'AdminUserController');
         Route::resource('roles', 'RoleController');
-        Route::resource('posts', 'PostController');
 
     });
+
+});
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::resource('profile', 'ProfileController', [
+        'only' => [
+            'update', 'edit'
+        ]
+    ]);
 
 });
