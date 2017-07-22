@@ -7,25 +7,20 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class RecoverPassword extends Notification
+class UserRegistered extends Notification
 {
     use Queueable;
 
-    /**
-     * The password reset token.
-     *
-     * @var string
-     */
-    public $token;
+    private $user;
 
     /**
      * Create a new notification instance.
-     * @param  string  $token
+     *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($user)
     {
-        $this->token = $token;
+        $this->user = $user;
     }
 
     /**
@@ -47,11 +42,9 @@ class RecoverPassword extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = 'password/reset';
-        
         return (new MailMessage)
-            ->subject('Recuperacion de contraseña')
-            ->markdown('mail.auth.recover', ['url' => $url, 'token' => $this->token]);
+            ->markdown('mail.auth.welcome', ['user' => $this->user])
+            ->subject('¡Bienvenido a VaSLibre,' . $this->user->name . '!');
     }
 
     /**
