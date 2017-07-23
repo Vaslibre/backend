@@ -13,14 +13,16 @@ class PostPublished extends Notification
 {
     use Queueable;
 
+    private $notas;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($notas)
     {
-        //
+        $this->notas = $notas;
     }
 
     /**
@@ -43,7 +45,8 @@ class PostPublished extends Notification
     public function toTelegram($notifiable)
     {
         return TelegramMessage::create()
-            ->content('Fué publicado un post.');
+            ->content("Se ha creado una nueva entrada en el blog:\n" . $this->notas->titulo ."\n". $this->notas->intro)
+            ->button('Ver publicación', 'https://blog.abr4xas.org'); // Inline Button
     }
 
     /**

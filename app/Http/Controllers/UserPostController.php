@@ -57,7 +57,7 @@ class UserPostController extends Controller
 
         if ($notas->save()) {
 
-            $notas->notify(new PostPublished());
+            $notas->notify(new PostPublished($notas));
             // Notification::send(new PostPublished());
 
             notify()->flash('Correcto', 'success',[

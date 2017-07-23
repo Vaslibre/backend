@@ -81,7 +81,7 @@ class LoginController extends Controller
 
         $authUser = $this->findOrCreateUser($user, $provider);
 
-        Auth::login($authUser);
+        Auth::login($authUser, true);
 
         notify()->flash('¡Bien!', 'success', [
             'timer' => 5000,
