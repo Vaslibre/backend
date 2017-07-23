@@ -3,29 +3,26 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use NotificationChannels\Telegram\TelegramChannel;
+use NotificationChannels\Telegram\TelegramMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class RecoverPassword extends Notification
+class PostPublished extends Notification
 {
     use Queueable;
 
-    /**
-     * The password reset token.
-     *
-     * @var string
-     */
-    public $token;
+    private $notas;
 
     /**
      * Create a new notification instance.
-     * @param  string  $token
+     *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($notas)
     {
-        $this->token = $token;
+        $this->notas = $notas;
     }
 
     /**
@@ -36,7 +33,7 @@ class RecoverPassword extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return [TelegramChannel::class];
     }
 
     /**
@@ -45,13 +42,11 @@ class RecoverPassword extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toTelegram($notifiable)
     {
-        $url = 'password/reset';
-        
-        return (new MailMessage)
-            ->subject('Recuperacion de contraseña')
-            ->markdown('mail.auth.recover', ['url' => $url, 'token' => $this->token]);
+        return TelegramMessage::create()
+            ->content("Se ha creado una nueva entrada en el blog:\n" . $this->notas->titulo ."\n". $this->notas->intro)
+            ->button('Ver publicación', 'https://blog.abr4xas.org'); // Inline Button
     }
 
     /**

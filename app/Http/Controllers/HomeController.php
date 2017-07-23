@@ -22,8 +22,10 @@ class HomeController extends Controller
     public function index(Request $request, $slug = null)
     {
         if ($request->has('id') && $request->has('go') || $request->has('go')) {
+
             $id = $request->input('id');
             $go = $request->input('go');
+
             if ($go == 5) {
                 return $this->nota->oldToNewPost($id);
             }
@@ -36,13 +38,16 @@ class HomeController extends Controller
             if ($go == 13) {
                 return redirect()->route('colaboraciones');
             }
+
         }
+
         $result = Notas::latest()
         ->wherePublicado(true)
         ->filter(request(['month','year']))
         ->paginate(6);
         return view('front.welcome', compact('result'));
     }
+
     /**
      * Display the specified resource.
      *
@@ -53,8 +58,14 @@ class HomeController extends Controller
     {
         return $this->nota->getNotas($slug);
     }
+
     public function colaboraciones()
     {
         return view('front.colaboraciones');
+    }
+
+    public function politicas()
+    {
+        return view('front.politicas');
     }
 }

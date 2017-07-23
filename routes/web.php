@@ -21,6 +21,8 @@ Route::get('/notas/{slug?}', 'PublicacionesController@show')->name('notas');
 
 // colaboraciones
 Route::get('/colaboraciones', 'HomeController@colaboraciones')->name('colaboraciones');
+// politicas
+Route::get('/politicas', 'HomeController@politicas')->name('politicas');
 
 // buscador
 Route::get('find', 'SearchController@find')->name('search');
@@ -53,9 +55,25 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::middleware(['role:Admin'])->group(function () {
 
         Route::get('/home', 'HomeController@index')->name('admin.home');
+
+        Route::get('/analytics', 'AnalyticsController@index')->name('admin.analytics');
         Route::resource('users', 'AdminUserController');
         Route::resource('roles', 'RoleController');
-        Route::resource('posts', 'PostController');
+
+    });
+
+});
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::resource('profile', 'ProfileController', [
+        'only' => [
+            'update', 'edit'
+        ]
+    ]);
+    Route::group(['prefix' => 'user'], function () {
+
+        Route::resource('post', 'UserPostController');
 
     });
 

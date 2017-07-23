@@ -3,18 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Publicaciones extends Model
 {
+    use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'titulo', 
+        'titulo',
         'intro',
-        'url', 
+        'url',
         'postea'
     ];
 
@@ -42,5 +45,15 @@ class Publicaciones extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }    
+    }
+
+    /**
+    * Route notifications for the Telegram channel.
+    *
+    * @return int
+    */
+    public function routeNotificationForTelegram()
+    {
+        return env(CHAT_ID);
+    }
 }

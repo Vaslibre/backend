@@ -3,13 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Carbon\Carbon;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Illuminate\Notifications\Notifiable;
 
 class Notas extends Model
 {
 
-    use SearchableTrait;
+    use SearchableTrait, HasSlug,Notifiable;
 
     /**
      * Searchable rules.
@@ -94,4 +97,25 @@ class Notas extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('titulo')
+            ->saveSlugsTo('url')
+            ->doNotGenerateSlugsOnUpdate();
+    }    
+
+
+    /**
+    * Route notifications for the Telegram channel.
+    *
+    * @return int
+    */
+    public function routeNotificationForTelegram()
+    {
+        return env('CHAT_ID');
+    }
 }

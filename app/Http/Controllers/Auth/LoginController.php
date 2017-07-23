@@ -11,6 +11,8 @@ use Auth;
 use Socialite;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use Abr4xas\Utils\SeoUrl;
+use App\Notifications\UserRegistered;
+use Illuminate\Support\Facades\Notification;
 
 class LoginController extends Controller
 {
@@ -78,7 +80,7 @@ class LoginController extends Controller
         $user = Socialite::driver($provider)->user();
 
         $authUser = $this->findOrCreateUser($user, $provider);
-        //  dd($authUser);
+
         Auth::login($authUser, true);
 
         notify()->flash('¡Bien!', 'success', [
@@ -86,7 +88,7 @@ class LoginController extends Controller
             'text'  => 'Bienvenido, ' . $authUser->name,
         ]);
 
-       return redirect()->intended('home');
+       return redirect()->route('home');
 
     }
 
@@ -125,6 +127,8 @@ class LoginController extends Controller
                 ]);
 
                 $user->assignRole('User');
+
+                Notification::send($user, new UserRegistered($user));
             }
 
             $account->user()->associate($user);
