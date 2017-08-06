@@ -57,7 +57,7 @@ class UserPostController extends Controller
 
         if ($notas->save()) {
 
-            $notas->notify(new PostPublished($notas));
+            //$notas->notify(new PostPublished($notas));
             // Notification::send(new PostPublished());
 
             notify()->flash('Correcto', 'success',[
@@ -111,7 +111,7 @@ class UserPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {        
+    {   
         $this->validate($request, [
             'titulo'  => 'required',
             'intro'   => 'required',
