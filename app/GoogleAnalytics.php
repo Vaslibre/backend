@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App;
 
 use Analytics;
@@ -16,8 +16,8 @@ class GoogleAnalytics{
 
         $result  = collect($country['rows'] ?? [])->map(function (array $dateRow) {
             return [
-                'country' =>  $dateRow[0],
-                'sessions' => (int) $dateRow[1],
+                'country'   =>  $dateRow[0],
+                'sessions'  => (int) $dateRow[1],
             ];
         });
         /* $data['country'] = $result->pluck('country'); */
@@ -33,9 +33,9 @@ class GoogleAnalytics{
         foreach ($array as $k=>$v) {
 
             $array[$k] ['label'] = $array[$k] ['browser'];
-            unset($array[$k]['browser']); 
+            unset($array[$k]['browser']);
             $array[$k] ['value'] = $array[$k] ['sessions'];
-            unset($array[$k]['sessions']); 
+            unset($array[$k]['sessions']);
             $array[$k]['color'] = $array[$k]['highlight'] = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
         }
 
@@ -50,13 +50,29 @@ class GoogleAnalytics{
         foreach ($array as $k=>$v) {
 
             $array[$k] ['label']    = $array[$k] ['url'];
-            unset($array[$k]['url']); 
+            unset($array[$k]['url']);
             $array[$k] ['value']    = $array[$k] ['pageViews'];
-            unset($array[$k]['pageViews']); 
+            unset($array[$k]['pageViews']);
             $array[$k]['color']     = $array[$k]['highlight'] = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
         }
 
         return json_encode($array);
     }
 
+    static function mobileDeviceInfo()
+    {
+        $mobile = Analytics::performQuery(Period::days(14),'ga:sessions',  [
+            'dimensions'    => 'ga:mobileDeviceInfo',
+            'sort'          => '-ga:sessions'
+        ]);
+
+        $result  = collect($mobile['rows'] ?? [])->map(function (array $mobileRow) {
+            return [
+                'mobileDeviceInfo'  =>  $mobileRow[0],
+                'sessions'          => (int) $mobileRow[1],
+            ];
+        });
+
+        return $result;
+    }
 }
