@@ -27,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('banner',$banner = Banner::getBanner());
         });
 
+        view()->composer('front.partials.widgets.friends', function($view) {
+            $view->with('friends', Banner::getFriends());
+        });
+
         view()->composer('front.partials.header', function ($view) {
             $current_route_name = \Request::route()->getName();
             $view->with('current', $current_route_name);

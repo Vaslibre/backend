@@ -36,8 +36,6 @@ class AnalyticsController extends Controller
         // $this->data['three_url']        = $analyticsData_three->pluck('url');
         // $this->data['three_pageTitle']  = $analyticsData_three->pluck('pageTitle');
         // $this->data['three_pageViews']  = $analyticsData_three->pluck('pageViews');
-        
-
 
 
         $this->data['browserjson'] = GoogleAnalytics::topbrowsers();
@@ -45,11 +43,14 @@ class AnalyticsController extends Controller
 
         // $this->data['analyticsData_three'] = Analytics::fetchMostVisitedPages(Period::days(14));
 
-        // dd($this->data['analyticsData_three']);
-
         $result = GoogleAnalytics::country();
         $this->data['country']          = $result->pluck('country');
         $this->data['country_sessions'] = $result->pluck('sessions');
+
+        $mobile = GoogleAnalytics::mobileDeviceInfo();
+        $this->data['mobileInfo']      = $mobile->pluck('mobileDeviceInfo');
+        $this->data['mobile_sessions'] = $mobile->pluck('sessions');
+
 
         $this->data['ceci_ver'] = config('mycms.ceci_ver'); // set the page title
 

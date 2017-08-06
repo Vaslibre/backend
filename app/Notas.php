@@ -50,8 +50,12 @@ class Notas extends Model
     {
         $nota   = Notas::whereUrl($slug)->first();
 
-        $min    = Notas::where('id', '<', $nota->id)->max('id');
-        $max    = Notas::where('id', '>', $nota->id)->min('id');
+        $min    = Notas::where('id', '<', $nota->id)
+                        ->wherePublicado(true)
+                        ->max('id');
+        $max    = Notas::where('id', '>', $nota->id)
+                        ->wherePublicado(true)
+                        ->min('id');
 
         $previous   = Notas::whereId($min)->first();
         $next       = Notas::whereId($max)->first();

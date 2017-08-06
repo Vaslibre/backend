@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "abr4xas/utils",
-            "version": "v2.6.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/abr4xas/utils.git",
-                "reference": "ea1463d770ca9da360efd4653093617ccb9e79f5"
+                "reference": "d5d4d82ee0cec5e10f26763cddc0ed6bc7acb7ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/abr4xas/utils/zipball/ea1463d770ca9da360efd4653093617ccb9e79f5",
-                "reference": "ea1463d770ca9da360efd4653093617ccb9e79f5",
+                "url": "https://api.github.com/repos/abr4xas/utils/zipball/d5d4d82ee0cec5e10f26763cddc0ed6bc7acb7ad",
+                "reference": "d5d4d82ee0cec5e10f26763cddc0ed6bc7acb7ad",
                 "shasum": ""
             },
             "type": "library",
@@ -37,7 +37,7 @@
                 }
             ],
             "description": "Personal Packages",
-            "time": "2017-07-20T22:19:22+00:00"
+            "time": "2017-07-20T22:31:52+00:00"
         },
         {
             "name": "codecourse/notify",
@@ -379,16 +379,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.15",
+            "version": "v0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/google-api-php-client-services.git",
-                "reference": "9eaaa1062fa2a7cd2d16d3b5ab39efc0bc02a37e"
+                "reference": "29c32b7d90a92af279ff5b51301fef03b44da7dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/9eaaa1062fa2a7cd2d16d3b5ab39efc0bc02a37e",
-                "reference": "9eaaa1062fa2a7cd2d16d3b5ab39efc0bc02a37e",
+                "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/29c32b7d90a92af279ff5b51301fef03b44da7dd",
+                "reference": "29c32b7d90a92af279ff5b51301fef03b44da7dd",
                 "shasum": ""
             },
             "require": {
@@ -412,7 +412,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2017-07-13T19:18:11+00:00"
+            "time": "2017-07-22T00:20:26+00:00"
         },
         {
             "name": "google/auth",
