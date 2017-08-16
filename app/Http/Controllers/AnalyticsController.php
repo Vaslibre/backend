@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Analytics;
 use Spatie\Analytics\Period;
 use Carbon\Carbon;
-use App\GoogleAnalytics;
+use App\Services\GoogleAnalytics;
 
 
 class AnalyticsController extends Controller

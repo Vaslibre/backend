@@ -68,4 +68,10 @@ class HomeController extends Controller
     {
         return view('front.politicas');
     }
+
+    public function archives()
+    {
+        $archives = Notas::archives();
+        return view('front.archivos', compact('archives'));
+    }
 }

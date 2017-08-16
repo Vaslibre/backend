@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Blade;
 use App\Notas;
 use App\Banner;
 
+use App\Services\Trending;
+
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap any application services.
      *
@@ -19,9 +22,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191); // FIX Specified key was too long error
 
-        view()->composer('front.partials.widgets.archives', function($view) {
-            $view->with('archives',$archives = Notas::archives());
-        });
+        // view()->composer('front.partials.widgets.archives', function($view) {
+        //     $view->with('archives',$archives = Notas::archives());
+        // });
 
         view()->composer('front.partials.banner', function($view) {
             $view->with('banner',$banner = Banner::getBanner());
@@ -34,7 +37,10 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('front.partials.header', function ($view) {
             $current_route_name = \Request::route()->getName();
             $view->with('current', $current_route_name);
+        });
 
+        view()->composer('front.partials.widgets.popular', function($view) {
+            $view->with('popular', Trending::week());
         });
 
         Blade::directive('utf8Decode', function($expression){

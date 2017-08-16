@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Services;
 
 use Analytics;
 use Spatie\Analytics\Period;
