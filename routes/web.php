@@ -15,6 +15,8 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/blog/{slug?}', 'HomeController@show')->name('blog');
 
+Route::get('/archivos', 'HomeController@archives')->name('archivos');
+
 // Notas publicadas
 Route::get('/notas', 'PublicacionesController@index')->name('notas');
 Route::get('/notas/{slug?}', 'PublicacionesController@show')->name('notas');
@@ -35,6 +37,8 @@ Route::get('/rss', 'RssController@index')->name('rss');
 Route::get('/nosotros', function () {
     return view('front.nosotros');
 })->name('nosotros');
+
+
 
 // Profile
 Route::get('profile/{slug}', 'ProfileController@show');
