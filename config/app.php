@@ -180,7 +180,6 @@ return [
         /*
          * Componentes necesarios para VaSLibre
          */
-        Codecourse\Notify\NotifyServiceProvider::class,
         Spatie\CookieConsent\CookieConsentServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,    
         Collective\Html\HtmlServiceProvider::class,
@@ -188,7 +187,6 @@ return [
         Spatie\Analytics\AnalyticsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         NotificationChannels\Telegram\TelegramServiceProvider::class,
-        Abr4xas\GoogleAnalytics\GoogleAnalyticsServiceProvider::class,
 
     ],
 
