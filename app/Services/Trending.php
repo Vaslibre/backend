@@ -24,6 +24,7 @@ class Trending
            return $item['url'] == '/' or
            $item['url'] == '/login' or
            $item['url'] == '/nosotros' or
+           $item['url'] == '/archivos' or
            starts_with($item['url'], '/notas');
        })->unique('url')->transform(function($item){
            $item['pageTitle'] = str_replace('Vaslibre - ', '', $item['pageTitle']);

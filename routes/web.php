@@ -54,10 +54,6 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-
-
-Route::get('/analytics', 'AnalyticsController@index')->name('admin.analytics');
-
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::middleware(['role:Admin'])->group(function () {
