@@ -188,6 +188,7 @@ return [
         Spatie\Analytics\AnalyticsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         NotificationChannels\Telegram\TelegramServiceProvider::class,
+        Abr4xas\GoogleAnalytics\GoogleAnalyticsServiceProvider::class,
 
     ],
 

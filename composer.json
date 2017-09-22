@@ -6,7 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "abr4xas/utils": "^2.5",
+        "abr4xas/utils": "dev-master",
+        "abr4xas/GoogleAnalytics": "dev-master",
         "codecourse/notify": "^1.1",
         "guzzlehttp/guzzle": "^6.3",
         "laravel-notification-channels/telegram": "^0.0.2",

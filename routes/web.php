@@ -54,16 +54,32 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+
+
+Route::get('/analytics', 'AnalyticsController@index')->name('admin.analytics');
+
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::middleware(['role:Admin'])->group(function () {
 
         Route::get('/home', 'HomeController@index')->name('admin.home');
 
-        Route::get('/analytics', 'AnalyticsController@index')->name('admin.analytics');
         Route::resource('users', 'AdminUserController');
         Route::resource('roles', 'RoleController');
 
+        //Google Analytics
+        Route::get('analytics', 'AnalyticsController@index');
+        Route::get('analytics-mobile', 'AnalyticsController@mobile');
+        Route::get('analytics-returning', 'AnalyticsController@newreturningsessions');
+        Route::get('analytics-operating', 'AnalyticsController@operatingsystem');
+        Route::get('analytics-traffic', 'AnalyticsController@traffic');
+        Route::get('analytics-time-on-site', 'AnalyticsController@timeonsite');
+        Route::get('analytics-referring-sites', 'AnalyticsController@referringsites');
+        Route::get('analytics-search-engines', 'AnalyticsController@searchengines');
+        Route::get('analytics-keywords', 'AnalyticsController@keywords');
+        Route::get('analytics-topcontent', 'AnalyticsController@topcontent');
+        Route::get('analytics-top-landing-pages', 'AnalyticsController@toplandingpages');
+        Route::get('analytics-top-exit-pages', 'AnalyticsController@topexitpages');
     });
 
 });
