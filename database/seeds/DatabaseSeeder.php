@@ -70,6 +70,10 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Added only default user role.');
         }
 
+        $this->call(BannerTableSeeder::class); // Banner 
+        $this->call(NotasTableSeeder::class); // Notas 
+        $this->call(PublicacionesTableSeeder::class); // Publicaciones
+         
         $this->command->warn('All done :)');
     }
 

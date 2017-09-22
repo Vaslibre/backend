@@ -48,11 +48,11 @@ Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 
-//Auth::routes();
+Auth::routes();
 // Login & Logout Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+// Route::post('login', 'Auth\LoginController@login');
+// Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
@@ -94,3 +94,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
