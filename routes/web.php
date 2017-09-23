@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         Route::resource('roles', 'RoleController');
 
         Route::resource('banner', 'AdminBannerController', ['except' => ['show']]);
+        Route::resource('blogroll', 'AdminBlogRollController', ['except' => ['show']]);
 
         //Google Analytics
         Route::get('analytics', 'AnalyticsController@index');

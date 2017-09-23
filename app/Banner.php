@@ -23,9 +23,4 @@ class Banner extends Model
         return static::orderByRaw("RAND()")->first();
     }
 
-    public static function getFriends()
-    {
-        return static::orderByRaw("RAND()")->get();
-    }
-
 }

@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Blade;
 use App\Notas;
 use App\Banner;
-
+use App\BlogRoll;
 use App\Services\Trending;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('front.partials.widgets.friends', function($view) {
-            $view->with('friends', Banner::getFriends());
+            $view->with('friends', BlogRoll::getFriends());
         });
 
         view()->composer('front.partials.header', function ($view) {

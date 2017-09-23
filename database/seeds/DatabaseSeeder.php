@@ -73,6 +73,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BannerTableSeeder::class); // Banner 
         $this->call(NotasTableSeeder::class); // Notas 
         $this->call(PublicacionesTableSeeder::class); // Publicaciones
+        $this->call(BlogRollTableSeeder::class); // BlogRoll
          
         $this->command->warn('All done :)');
     }
