@@ -48,7 +48,7 @@ class Notas extends Model
 
     public function getNotas($slug)
     {
-        $nota   = Notas::whereUrl($slug)->first();
+        $nota   = Notas::whereUrl($slug)->firstOrFail();
 
         $min    = Notas::where('id', '<', $nota->id)
                         ->wherePublicado(true)

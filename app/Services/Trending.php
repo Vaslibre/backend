@@ -9,10 +9,10 @@ class Trending
 {
    public static function week($limit = 6)
    {
-       return self::getResults(7);
+       return self::getResults(30);
    }
 
-   protected static function getResults($days, $limit=6)
+   protected static function getResults($days, $limit=20)
    {
       $data = Analytics::fetchMostVisitedPages(Period::days($days), $limit);
       return self::parseResults($data, $limit);
@@ -25,7 +25,9 @@ class Trending
            $item['url'] == '/login' or
            $item['url'] == '/nosotros' or
            $item['url'] == '/archivos' or
-           starts_with($item['url'], '/notas');
+           $item['url'] == '/?page=3' or
+           $item['url'] == '/?page=2';
+        //    starts_with($item['url'], '/notas');
        })->unique('url')->transform(function($item){
            $item['pageTitle'] = str_replace('Vaslibre - ', '', $item['pageTitle']);
            return $item;

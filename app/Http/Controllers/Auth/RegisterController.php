@@ -96,6 +96,6 @@ class RegisterController extends Controller
             'text'  => 'Bienvenido, ' . $user->name,
         ]);
 
-       return redirect()->route('home');
+        return redirect('/');
     }    
 }

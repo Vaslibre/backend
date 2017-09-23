@@ -58,10 +58,12 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::middleware(['role:Admin'])->group(function () {
 
-        Route::get('/home', 'HomeController@index')->name('admin.home');
+        // Route::get('/home', 'HomeController@index')->name('admin.home');
 
         Route::resource('users', 'AdminUserController');
         Route::resource('roles', 'RoleController');
+
+        Route::resource('banner', 'AdminBannerController', ['except' => ['show']]);
 
         //Google Analytics
         Route::get('analytics', 'AnalyticsController@index');
