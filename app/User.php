@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\DateTranslator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -9,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, DateTranslator;
 
     /**
      * The attributes that are mass assignable.

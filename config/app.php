@@ -187,6 +187,7 @@ return [
         Spatie\Analytics\AnalyticsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         NotificationChannels\Telegram\TelegramServiceProvider::class,
+        Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
 
     ],
 
@@ -245,6 +246,7 @@ return [
         'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Gravatar'  => Abr4xas\Utils\Gravatar::class,
+        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
 
     ],
 

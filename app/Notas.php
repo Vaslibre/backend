@@ -2,17 +2,18 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 use Carbon\Carbon;
-use Nicolaslopezj\Searchable\SearchableTrait;
+use Spatie\Sluggable\HasSlug;
+use App\Traits\DateTranslator;
+use Spatie\Sluggable\SlugOptions;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Notas extends Model
 {
 
-    use SearchableTrait, HasSlug,Notifiable;
+    use SearchableTrait, HasSlug,Notifiable, DateTranslator;
 
     /**
      * Searchable rules.
@@ -48,7 +49,7 @@ class Notas extends Model
 
     public function getNotas($slug)
     {
-        $nota   = Notas::whereUrl($slug)->first();
+        $nota   = Notas::whereUrl($slug)->firstOrFail();
 
         $min    = Notas::where('id', '<', $nota->id)
                         ->wherePublicado(true)
@@ -64,12 +65,14 @@ class Notas extends Model
 
     public function scopeFilter($query, $filters)
     {
-        if ($month = $filters['month']) {
-            $query->whereMonth('created_at', Carbon::parse($month)->month);
-        }
+        if (isset($filters['month']) && isset($filters['year'])) {
+            if ($month = $filters['month']) {
+                $query->whereMonth('created_at', Carbon::parse($month)->month);
+            }
 
-        if ($year = $filters['year']) {
-            $query->whereYear('created_at', $year);
+            if ($year = $filters['year']) {
+                $query->whereYear('created_at', $year);
+            }
         }
     }
 
@@ -92,7 +95,7 @@ class Notas extends Model
         $slug = Notas::whereId($id)->value('url');
 
         return redirect()->action(
-                'HomeController@show', ['slug' => $slug]
+            'HomeController@show', ['slug' => $slug]
         );
     }
 

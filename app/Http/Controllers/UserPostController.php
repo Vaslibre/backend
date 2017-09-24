@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Notas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Notas;
 use App\Notifications\PostPublished;
 
 use Illuminate\Support\Facades\Notification;
@@ -18,7 +18,9 @@ class UserPostController extends Controller
      */
     public function index()
     {
-        //
+        $result = Notas::latest()->with('user')->paginate();
+
+        return view('admin.post.index', compact('result'));
     }
 
     /**
@@ -80,17 +82,6 @@ class UserPostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -123,6 +114,10 @@ class UserPostController extends Controller
         $notas->titulo      = $request->titulo;
         $notas->intro       = $request->intro;
         $notas->texto       = $request->texto;
+
+        if (Auth::user()->hasPermissionTo('add_publish')) {
+            $notas->publicado = $request->publicado;
+        }
 
         if ($notas->save()) {
 

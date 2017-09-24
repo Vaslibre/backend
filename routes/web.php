@@ -38,8 +38,6 @@ Route::get('/nosotros', function () {
     return view('front.nosotros');
 })->name('nosotros');
 
-
-
 // Profile
 Route::get('profile/{slug}', 'ProfileController@show');
 
@@ -47,25 +45,19 @@ Route::get('profile/{slug}', 'ProfileController@show');
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-
-//Auth::routes();
-// Login & Logout Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
-
-
-Route::get('/analytics', 'AnalyticsController@index')->name('admin.analytics');
+Auth::routes();
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::middleware(['role:Admin'])->group(function () {
 
-        Route::get('/home', 'HomeController@index')->name('admin.home');
+        Route::resource('users', 'AdminUserController'); // Administra Usuarios
+        Route::resource('roles', 'RoleController'); // Administra Roles
 
-        Route::resource('users', 'AdminUserController');
-        Route::resource('roles', 'RoleController');
+        Route::resource('banner', 'AdminBannerController', ['except' => ['show']]); // Administra Banner
+        Route::resource('blogroll', 'AdminBlogRollController', ['except' => ['show']]); // Administra Blog roll
+
+        Route::get('post', 'UserPostController@index',['only'=> ['index']]);
 
         //Google Analytics
         Route::get('analytics', 'AnalyticsController@index');
@@ -93,7 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
     Route::group(['prefix' => 'user'], function () {
 
-        Route::resource('post', 'UserPostController');
+        Route::resource('post', 'UserPostController', ['except' => ['index']]);
 
     });
 

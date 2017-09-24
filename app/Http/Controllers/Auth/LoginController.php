@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-use App\User;
-use App\SocialAccount;
+
 use Auth;
-use Socialite;
-use Laravel\Socialite\Contracts\User as ProviderUser;
+use App\User;
 use Abr4xas\Utils\SeoUrl;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Notifications\UserRegistered;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use App\SocialAccount;
+use Socialite;
+use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class LoginController extends Controller
 {
@@ -34,7 +36,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    // protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -47,94 +49,35 @@ class LoginController extends Controller
     }
 
     /**
-     * Redirect the user to the {$provider} authentication page.
+     * Validate the user login request.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
      */
-    public function redirectToProvider($provider)
+    protected function validateLogin(Request $request)
     {
-        return Socialite::driver($provider)->redirect();
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'g-recaptcha-response' => 'required|recaptcha',
+        ]);
     }
 
     /**
-     * Obtain the user information from provider.  Check if the user already exists in our
-     * database by looking up their provider_id in the database.
-     * If the user exists, log them in. Otherwise, create a new user then log them in. After that
-     * redirect them to the authenticated users homepage.
+     * The user has been authenticated.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
      */
-    public function handleProviderCallback(Request $request, $provider)
+    protected function authenticated(Request $request, $user)
     {
-
-        if ($request->has('denied') || $request->has('error')) {
-
-            notify()->flash('¡Oops!', 'error', [
-                'timer' => 5000,
-                'text'  => 'Has cancelado el inicio de sesión',
-            ]);
-
-            return redirect()->route('home');
-        }
-
-        $user = Socialite::driver($provider)->user();
-
-        $authUser = $this->findOrCreateUser($user, $provider);
-
-        Auth::login($authUser, true);
-
         notify()->flash('¡Bien!', 'success', [
             'timer' => 5000,
-            'text'  => 'Bienvenido, ' . $authUser->name,
+            'text'  => 'Bienvenido, ' . $user->name,
         ]);
 
-       return redirect()->route('home');
-
+       return redirect('/');
     }
 
-    /**
-     * If a user has registered before using social auth, return the user
-     * else, create a new user object.
-     * @param  $user Socialite user object
-     * @param $provider Social auth provider
-     * @return  User
-     */
-    public function findOrCreateUser(ProviderUser $providerUser, $provider)
-    {
-        $account = SocialAccount::whereProvider($provider)
-            ->whereProviderUserId($providerUser->getId())
-            ->first();
-
-        if ($account) {
-
-            return $account->user;
-
-        } else {
-
-            $account = new SocialAccount([
-                'provider_user_id'  => $providerUser->getId(),
-                'provider'          => $provider
-            ]);
-
-            $user = User::whereEmail($providerUser->getEmail())->first();
-
-            if (!$user) {
-
-                $user = User::create([
-                    'email'     => $providerUser->getEmail(),
-                    'name'      => $providerUser->getName(),
-                    'nickname'  => ($providerUser->getNickname() != NULL ) ? $providerUser->getNickname() : SeoUrl::generateSlug($providerUser->getName()),
-                ]);
-
-                $user->assignRole('User');
-
-                Notification::send($user, new UserRegistered($user));
-            }
-
-            $account->user()->associate($user);
-            $account->save();
-
-            return $user;
-        }
-    }
 }

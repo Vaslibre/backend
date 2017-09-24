@@ -6,6 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\UserRegistered;
+use Illuminate\Support\Facades\Notification;
+
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -27,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    // protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -47,10 +51,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // dd($data);
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'g-recaptcha-response' => 'required|recaptcha',
+            'nick' => 'required|string|max:255',
         ]);
     }
 
@@ -62,10 +69,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'nickname' => $data['nick'],
         ]);
+
+        $user->assignRole('User');
+
+        Notification::send($user, new UserRegistered($user));
+        return $user;
     }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        notify()->flash('¡Bien!', 'success', [
+            'timer' => 5000,
+            'text'  => 'Bienvenido, ' . $user->name,
+        ]);
+
+        return redirect('/');
+    }    
 }
