@@ -2,17 +2,18 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 use Carbon\Carbon;
-use Nicolaslopezj\Searchable\SearchableTrait;
+use Spatie\Sluggable\HasSlug;
+use App\Traits\DateTranslator;
+use Spatie\Sluggable\SlugOptions;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Notas extends Model
 {
 
-    use SearchableTrait, HasSlug,Notifiable;
+    use SearchableTrait, HasSlug,Notifiable, DateTranslator;
 
     /**
      * Searchable rules.
@@ -94,7 +95,7 @@ class Notas extends Model
         $slug = Notas::whereId($id)->value('url');
 
         return redirect()->action(
-                'HomeController@show', ['slug' => $slug]
+            'HomeController@show', ['slug' => $slug]
         );
     }
 

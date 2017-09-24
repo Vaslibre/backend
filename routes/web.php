@@ -51,11 +51,13 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::middleware(['role:Admin'])->group(function () {
 
-        Route::resource('users', 'AdminUserController');
-        Route::resource('roles', 'RoleController');
+        Route::resource('users', 'AdminUserController'); // Administra Usuarios
+        Route::resource('roles', 'RoleController'); // Administra Roles
 
-        Route::resource('banner', 'AdminBannerController', ['except' => ['show']]);
-        Route::resource('blogroll', 'AdminBlogRollController', ['except' => ['show']]);
+        Route::resource('banner', 'AdminBannerController', ['except' => ['show']]); // Administra Banner
+        Route::resource('blogroll', 'AdminBlogRollController', ['except' => ['show']]); // Administra Blog roll
+
+        Route::get('post', 'UserPostController@index',['only'=> ['index']]);
 
         //Google Analytics
         Route::get('analytics', 'AnalyticsController@index');
@@ -83,7 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
     Route::group(['prefix' => 'user'], function () {
 
-        Route::resource('post', 'UserPostController');
+        Route::resource('post', 'UserPostController', ['except' => ['index']]);
 
     });
 

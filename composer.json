@@ -11,6 +11,7 @@
         "abr4xas/utils": "dev-master",
         "greggilbert/recaptcha": "dev-master",
         "guzzlehttp/guzzle": "^6.3",
+        "jenssegers/date": "^3.2",
         "laravel-notification-channels/telegram": "^0.0.3",
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",
