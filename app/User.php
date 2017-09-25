@@ -4,13 +4,15 @@ namespace App;
 
 use App\Traits\DateTranslator;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\MailResetPasswordToken;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, DateTranslator;
+    use Notifiable, HasRoles, DateTranslator, CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -43,5 +45,13 @@ class User extends Authenticatable
     {
         $this->notas()->save($notas);
     }
+
+    /**
+    * Send a password reset email to the user
+    */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new MailResetPasswordToken($token));
+    }    
 
 }
