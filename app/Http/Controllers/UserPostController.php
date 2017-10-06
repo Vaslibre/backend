@@ -64,7 +64,7 @@ class UserPostController extends Controller
 
             notify()->flash('Correcto', 'success',[
                 'text' => 'La publicación fue creada correctamente.',
-                'timer'=> 4000
+                'timer'=> 7000
             ]);
 
             return redirect()->route('home');
@@ -73,7 +73,7 @@ class UserPostController extends Controller
 
             notify()->flash('Oops', 'error',[
                 'text' => 'Hay un problema interno, intenta más tarde...',
-                'timer'=> 4000
+                'timer'=> 7000
             ]);
 
             return back()->withInput();
