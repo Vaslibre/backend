@@ -39,6 +39,7 @@ class AdminBannerController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'titulo'  => 'required',
             'url_site'   => 'required',
