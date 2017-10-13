@@ -6,6 +6,7 @@ use App\Notas;
 use App\Banner;
 use App\BlogRoll;
 use App\Services\Trending;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -49,6 +50,14 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('myGravatar', function($expression){
             return "<?php echo Gravatar::getAvatarUrl($expression); ?>";
+        });
+
+        Blade::if('member', function ($param) {
+            return Auth::check() && Auth::user()->id == $param;
+        });
+
+        Blade::if('guest', function ($param) {
+            return !Auth::check() || !Auth::user()->id == $param;
         });
     }
 
