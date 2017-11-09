@@ -34,16 +34,10 @@ Route::get('/sitemap.xml', 'SitemapController@index');
 //RSS
 Route::get('/rss', 'RssController@index')->name('rss');
 
-Route::get('/nosotros', function () {
-    return view('front.nosotros');
-})->name('nosotros');
+Route::view('/nosotros', 'front.nosotros')->name('nosotros');
 
 // Profile
 Route::get('profile/{slug}', 'ProfileController@show');
-
-// OAuth Routes
-Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
-Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 Auth::routes();
 
