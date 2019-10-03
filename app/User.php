@@ -2,17 +2,13 @@
 
 namespace App;
 
-use App\Traits\DateTranslator;
-use Illuminate\Notifications\Notifiable;
-use App\Notifications\MailResetPasswordToken;
-use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, DateTranslator, CanResetPassword;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,11 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'nickname',
-        'bio'
+        'name', 'email', 'password',
     ];
 
     /**
@@ -36,22 +28,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function notas()
-    {
-        return $this->hasMany(Notas::class)->orderBy('id','desc');
-    }
-
-    public function publish(Notas $notas)
-    {
-        $this->notas()->save($notas);
-    }
-
     /**
-    * Send a password reset email to the user
-    */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new MailResetPasswordToken($token));
-    }    
-
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }
