@@ -9,11 +9,28 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "abr4xas/nova-profile-tool": "^1.1",
+        "abraham/twitteroauth": "^1.0",
+        "benjacho/belongs-to-many-field": "^0.7.0",
+        "ebess/advanced-nova-media-library": "^2.9",
         "fideloper/proxy": "^4.0",
+        "gregoriohc/laravel-nova-theme-responsive": "^0.6.2",
         "guzzlehttp/guzzle": "^6.3",
+        "jenssegers/date": "^3.5",
+        "jobcerto/nova-grid": "^1.0",
+        "kabbouchi/nova-impersonate": "^1.1",
         "laravel/framework": "^6.0",
+        "laravel/nova": "~2.0",
         "laravel/tinker": "^1.0",
-        "laravel/ui": "^1.0"
+        "laravel/ui": "^1.0",
+        "llaski/nova-server-metrics": "^0.1.0",
+        "spatie/laravel-feed": "^2.4",
+        "spatie/laravel-sluggable": "^2.2",
+        "spatie/url": "^1.3",
+        "tightenco/nova-google-analytics": "^0.1.7",
+        "titasgailius/search-relations": "^1.0",
+        "vyuldashev/nova-permission": "^2.1",
+        "yassi/nova-nested-form": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -22,6 +39,12 @@
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
