@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class BlogRoll extends Model
      * @var array
      */
      protected $fillable = [
-        'titulo', 
+        'titulo',
         'url_site',
     ];
 
