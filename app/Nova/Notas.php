@@ -5,6 +5,10 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Waynestate\Nova\CKEditor;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Notas extends Resource
@@ -45,6 +49,17 @@ class Notas extends Resource
             Text::make('Título', 'titulo')
                 ->sortable()
                 ->rules('required', 'max:255'),
+            Textarea::make('Introducción', 'intro'),
+            CKEditor::make('Contenido', 'texto')
+                ->hideFromIndex(),
+            Boolean::make('publicado', function () {
+                return $this->publicado;
+            }),
+
+            BelongsTo::make('Creado por', 'user', \App\Nova\User::class)
+                ->sortable()
+                ->hideWhenCreating()
+                ->hideWhenUpdating(),
         ];
     }
 

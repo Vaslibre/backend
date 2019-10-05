@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84fe308d71a5274bf6632bc9c3f8adf3",
+    "content-hash": "0823bbf45740aad9495cca1c2b4f92a2",
     "packages": [
         {
             "name": "abr4xas/nova-profile-tool",
@@ -5716,6 +5716,54 @@
                 "spatie-permission"
             ],
             "time": "2019-09-04T10:50:14+00:00"
+        },
+        {
+            "name": "waynestate/nova-ckeditor4-field",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/waynestate/nova-ckeditor4-field.git",
+                "reference": "fd6c2fcaeccbaffb91b2a0b7c9ce42a166f3dd27"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/waynestate/nova-ckeditor4-field/zipball/fd6c2fcaeccbaffb91b2a0b7c9ce42a166f3dd27",
+                "reference": "fd6c2fcaeccbaffb91b2a0b7c9ce42a166f3dd27",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Waynestate\\Nova\\CKEditorFieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Waynestate\\Nova\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Web Communications",
+                    "email": "web@wayne.edu"
+                }
+            ],
+            "description": "This nova package allows you to use CKEditor 4 for text areas.",
+            "keywords": [
+                "CKEditor",
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-07-25T15:45:09+00:00"
         },
         {
             "name": "yassi/nova-nested-form",
