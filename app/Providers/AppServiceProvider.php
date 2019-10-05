@@ -2,17 +2,19 @@
 
 namespace App\Providers;
 
-use App\Notas;
-use App\Banner;
-use App\BlogRoll;
-use App\Services\Trending;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 
     /**
      * Bootstrap any application services.
@@ -20,53 +22,6 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        Schema::defaultStringLength(191); // FIX Specified key was too long error
-
-        // view()->composer('front.partials.widgets.archives', function($view) {
-        //     $view->with('archives',$archives = Notas::archives());
-        // });
-
-        view()->composer('front.partials.banner', function($view) {
-            $view->with('banner',$banner = Banner::getBanner());
-        });
-
-        view()->composer('front.partials.widgets.friends', function($view) {
-            $view->with('friends', BlogRoll::getFriends());
-        });
-
-        view()->composer('front.partials.header', function ($view) {
-            $current_route_name = \Request::route()->getName();
-            $view->with('current', $current_route_name);
-        });
-
-        view()->composer('front.partials.widgets.popular', function($view) {
-            $view->with('popular', Trending::week());
-        });
-
-        Blade::directive('utf8Decode', function($expression){
-            return "<?php echo utf8_decode($expression); ?>";
-        });
-
-        Blade::directive('myGravatar', function($expression){
-            return "<?php echo Gravatar::getAvatarUrl($expression); ?>";
-        });
-
-        Blade::if('member', function ($param) {
-            return Auth::check() && Auth::user()->id == $param;
-        });
-
-        Blade::if('guest', function ($param) {
-            return !Auth::check() || !Auth::user()->id == $param;
-        });
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
     {
         //
     }

@@ -1,6 +1,5 @@
 <?php
 
-use App\BlogRoll;
 use Illuminate\Database\Seeder;
 
 class BlogRollTableSeeder extends Seeder
@@ -13,9 +12,6 @@ class BlogRollTableSeeder extends Seeder
      */
     public function run()
     {
-        $broll = new BlogRoll();
-        $broll->titulo = 'El blog de abr4xas';
-        $broll->url_site = 'https://blog.abr4xas.org';
-        $broll->save();
+        factory(App\Models\BlogRoll::class, 10)->create();
     }
 }

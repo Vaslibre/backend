@@ -14,17 +14,24 @@ class CreatePublicacionesTable extends Migration {
 	{
 		Schema::create('publicaciones', function(Blueprint $table)
 		{
-			$table->integer('id');
+            $table->bigIncrements('id');
 			$table->string('titulo');
 			$table->text('intro');
 			$table->string('url');
-			$table->string('postea');
-			$table->integer('fecha');
-			$table->integer('hits');
-			$table->integer('user_id');
-			$table->string('publicacion');
+			$table->string('postea')->nullable();
+			$table->integer('fecha')->nullable();
+			$table->integer('hits')->nullable();
+            $table->unsignedBigInteger('user_id');
+			$table->string('publicacion')->nullable();
 			$table->boolean('publicado')->default(false);
 			$table->timestamps();
+
+            //relation
+			$table->foreign('user_id')
+				->references('id')
+				->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 		});
 	}
 

@@ -18,13 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-
-            notify()->flash('¡Oops!', 'error', [
-                'timer' => 5000,
-                'text' => 'Lo siento, esa acción no está permitida',
-            ]);        
-                
-            return redirect()->route('home');
+            return redirect('/home');
         }
 
         return $next($request);

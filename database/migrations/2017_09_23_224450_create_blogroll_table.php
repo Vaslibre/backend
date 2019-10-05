@@ -14,7 +14,7 @@ class CreateBlogrollTable extends Migration
     public function up()
     {
         Schema::create('blogroll', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 			$table->string('titulo');
 			$table->string('url_site');
             $table->timestamps();

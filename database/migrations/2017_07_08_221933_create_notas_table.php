@@ -14,17 +14,24 @@ class CreateNotasTable extends Migration {
 	{
 		Schema::create('notas', function(Blueprint $table)
 		{
-			$table->increments('id');
+            $table->bigIncrements('id');
 			$table->string('titulo');
 			$table->text('intro');
-			$table->text('texto');
+			$table->longText('texto');
 			$table->string('url');
 			$table->string('postea')->nullable();
 			$table->integer('fecha')->nullable();
 			$table->integer('hits')->nullable();
-			$table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
 			$table->boolean('publicado')->default(false);
 			$table->timestamps();
+
+            //relation
+			$table->foreign('user_id')
+				->references('id')
+				->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 		});
 	}
 
