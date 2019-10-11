@@ -37,12 +37,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     /**
      * @return bool
      */
     public function canBeImpersonated()
     {
-        // return true
+        if (auth()->user()->hasRole('admin')) {
+            return true;
+        }
     }
 }
