@@ -6,7 +6,9 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Waynestate\Nova\CKEditor;
+use App\Nova\Metrics\PostCount;
 use Laravel\Nova\Fields\Boolean;
+use App\Nova\Metrics\PostsPerDay;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -71,7 +73,10 @@ class Notas extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            (new PostCount)->width('1/2'),
+            (new PostsPerDay)->width('1/2'),
+        ];
     }
 
     /**

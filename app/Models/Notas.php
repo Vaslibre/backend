@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use App\Traits\AppTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Notas extends Model
 {
@@ -79,5 +80,10 @@ class Notas extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeGetpost(Builder $query)
+    {
+        return $query->where('user_id', auth()->user()->id);
     }
 }
