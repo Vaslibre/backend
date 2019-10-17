@@ -974,16 +974,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.117",
+            "version": "v0.118",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "ae2f0f6f626db67d83ea0a0cd15100b9d083874b"
+                "reference": "3db3c3097dcfb2e2cd578053f28be20fe4ad8e01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/ae2f0f6f626db67d83ea0a0cd15100b9d083874b",
-                "reference": "ae2f0f6f626db67d83ea0a0cd15100b9d083874b",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/3db3c3097dcfb2e2cd578053f28be20fe4ad8e01",
+                "reference": "3db3c3097dcfb2e2cd578053f28be20fe4ad8e01",
                 "shasum": ""
             },
             "require": {
@@ -1007,7 +1007,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2019-10-07T00:23:24+00:00"
+            "time": "2019-10-14T00:24:06+00:00"
         },
         {
             "name": "google/auth",
@@ -1665,16 +1665,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.2.0",
+            "version": "v6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cacce5a77fa94793cf25345d67387632134d75dd"
+                "reference": "80914c430fb5e49f492812d704ba6aeec03d80a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cacce5a77fa94793cf25345d67387632134d75dd",
-                "reference": "cacce5a77fa94793cf25345d67387632134d75dd",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/80914c430fb5e49f492812d704ba6aeec03d80a2",
+                "reference": "80914c430fb5e49f492812d704ba6aeec03d80a2",
                 "shasum": ""
             },
             "require": {
@@ -1807,21 +1807,21 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-10-08T12:50:06+00:00"
+            "time": "2019-10-15T13:38:24+00:00"
         },
         {
             "name": "laravel/nova",
-            "version": "v2.4.0",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:laravel/nova.git",
-                "reference": "ae0d40f92f77e06d64fa9f43c7daeeaeb828ed2f"
+                "reference": "4dae919af5c8038adf07d6ec55bbf07b560a6b4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-ae0d40f92f77e06d64fa9f43c7daeeaeb828ed2f-zip-ee5a49.zip",
-                "reference": "ae0d40f92f77e06d64fa9f43c7daeeaeb828ed2f",
-                "shasum": "4883cdcef409ab81b0ec17782895c20d699bfe3b"
+                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-4dae919af5c8038adf07d6ec55bbf07b560a6b4c-zip-dcf811.zip",
+                "reference": "4dae919af5c8038adf07d6ec55bbf07b560a6b4c",
+                "shasum": "87535c62ee58dd7666b6502e043a440539e4e839"
             },
             "require": {
                 "cakephp/chronos": "^1.0",
@@ -1877,7 +1877,7 @@
                 "admin",
                 "laravel"
             ],
-            "time": "2019-10-01T17:44:14+00:00"
+            "time": "2019-10-15T19:49:38+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2001,16 +2001,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.56",
+            "version": "1.0.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "90e3f83cb10ef6b058d70f95267030e7a6236518"
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/90e3f83cb10ef6b058d70f95267030e7a6236518",
-                "reference": "90e3f83cb10ef6b058d70f95267030e7a6236518",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
                 "shasum": ""
             },
             "require": {
@@ -2081,7 +2081,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-10-12T13:05:59+00:00"
+            "time": "2019-10-16T21:01:05+00:00"
         },
         {
             "name": "league/glide",
@@ -2424,16 +2424,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.25.1",
+            "version": "2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1"
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/443fe5f1498147e0fbc792142b5dc43e2e8a533f",
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f",
                 "shasum": ""
             },
             "require": {
@@ -2487,7 +2487,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-10-05T15:52:23+00:00"
+            "time": "2019-10-14T14:18:59+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3468,16 +3468,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.14.1",
+            "version": "7.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "34f3700a2dc58032d0ab443dcb09c2be72d2a826"
+                "reference": "f96fd75f70e893b1b2c85224526e6d4a2c235ef8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/34f3700a2dc58032d0ab443dcb09c2be72d2a826",
-                "reference": "34f3700a2dc58032d0ab443dcb09c2be72d2a826",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/f96fd75f70e893b1b2c85224526e6d4a2c235ef8",
+                "reference": "f96fd75f70e893b1b2c85224526e6d4a2c235ef8",
                 "shasum": ""
             },
             "require": {
@@ -3548,20 +3548,20 @@
                 "media",
                 "spatie"
             ],
-            "time": "2019-09-26T22:59:00+00:00"
+            "time": "2019-10-16T13:46:56+00:00"
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "3.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "5bac2326fe73c7da9a3ae07dcf5fb44224e45f6f"
+                "reference": "e3821559c69b2b1ea8fdd967fa89ba13a01ead78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/5bac2326fe73c7da9a3ae07dcf5fb44224e45f6f",
-                "reference": "5bac2326fe73c7da9a3ae07dcf5fb44224e45f6f",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/e3821559c69b2b1ea8fdd967fa89ba13a01ead78",
+                "reference": "e3821559c69b2b1ea8fdd967fa89ba13a01ead78",
                 "shasum": ""
             },
             "require": {
@@ -3572,7 +3572,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "orchestra/testbench": "^3.8",
+                "orchestra/testbench": "^3.8|^4.0",
                 "phpunit/phpunit": "^8.0",
                 "predis/predis": "^1.1"
             },
@@ -3616,7 +3616,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2019-09-02T14:57:53+00:00"
+            "time": "2019-10-16T19:25:56+00:00"
         },
         {
             "name": "spatie/laravel-sluggable",
