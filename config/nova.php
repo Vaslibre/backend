@@ -90,6 +90,6 @@ return [
     |
     */
 
-    'pagination' => 'simple',
+    'pagination' => 'load-more',
 
 ];

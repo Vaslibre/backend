@@ -21,45 +21,9 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Seed the default permissions
-        $permissions = [
-            'users.all',
-            'users.index',
-            'users.show',
-            'users.add',
-            'users.edit',
-            'users.delete',
-            'notas.all',
-            'notas.index',
-            'notas.show',
-            'notas.add',
-            'notas.edit',
-            'notas.delete',
-            'banner.all',
-            'banner.index',
-            'banner.show',
-            'banner.add',
-            'banner.edit',
-            'banner.delete',
-            'blogroll.all',
-            'blogroll.index',
-            'blogroll.show',
-            'blogroll.add',
-            'blogroll.edit',
-            'blogroll.delete',
-            'publicaciones.all',
-            'publicaciones.index',
-            'publicaciones.show',
-            'publicaciones.add',
-            'publicaciones.edit',
-            'publicaciones.delete',
-        ];
+        $permissions = config('vaslibre.permissions');
 
-        $userPermission = [
-            'notas.index',
-            'notas.add',
-            'notas.edit',
-            'notas.delete',
-        ];
+        $userPermission = config('vaslibre.user_permissions');
 
         $this->command->info('Creando permisos...');
         foreach ($permissions as $perms) {
@@ -84,13 +48,5 @@ class RolesAndPermissionsSeeder extends Seeder
             // for others by default only read access
             $role->syncPermissions(Permission::where('name', 'LIKE', 'notas.%')->get());
         }
-
-        // $helpdesk = User::find(1);
-        // $helpdesk->assignRole('admin');
-        // $helpdesk->givePermissionTo($permissions);
-
-        // $admin = User::find(2);
-        // $admin->assignRole('admin');
-        // $admin->givePermissionTo($permissions);
     }
 }
